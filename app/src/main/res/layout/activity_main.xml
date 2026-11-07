@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#121212">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sol Sweeper"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Auto-forwards incoming SOL from the source wallet to the destination wallet as soon as it lands. Only use wallets you control."
+            android:textColor="#888888"
+            android:textSize="11sp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="14dp" />
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="RPC URLs (one per line, raced in parallel)" android:textColor="#CCCCCC" android:textSize="12sp" />
+        <EditText
+            android:id="@+id/edit_rpc_urls"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minLines="2"
+            android:gravity="top"
+            android:inputType="textMultiLine"
+            android:textColor="#FFFFFF"
+            android:textSize="11sp"
+            android:background="#1E1E1E"
+            android:padding="8dp" />
+
+        <Button
+            android:id="@+id/btn_use_devnet"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Use devnet RPC instead (for testing)"
+            android:textColor="#4FC3F7"
+            android:textAllCaps="false"
+            android:layout_marginTop="2dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="8dp">
+            <CheckBox
+                android:id="@+id/cb_faucet_enabled"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Auto-collect devnet faucet tokens (full auto)"
+                android:textColor="#CCCCCC"
+                android:textSize="12sp" />
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Devnet/testnet only - calls the RPC's own requestAirdrop, no captcha. Mainnet RPCs reject this."
+            android:textColor="#777777"
+            android:textSize="10sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="4dp">
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:layout_marginEnd="6dp">
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Faucet interval (ms)" android:textColor="#CCCCCC" android:textSize="11sp" />
+                <EditText android:id="@+id/edit_faucet_interval_ms" android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:inputType="number" android:text="60000" android:textColor="#FFFFFF" android:textSize="11sp" />
+            </LinearLayout>
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Amount/request (lamports)" android:textColor="#CCCCCC" android:textSize="11sp" />
+                <EditText android:id="@+id/edit_faucet_amount" android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:inputType="number" android:text="1000000000" android:textColor="#FFFFFF" android:textSize="11sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="Source wallet: base58 secret key, [1,2,3,...] array, or a 12/24-word seed phrase (derived via m/44'/501'/0'/0', the Phantom/Solflare default) - stored encrypted on-device only"
+            android:textColor="#CCCCCC" android:textSize="12sp" android:layout_marginTop="10dp" />
+        <EditText
+            android:id="@+id/edit_secret_key"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:textColor="#FFFFFF"
+            android:textSize="11sp" />
+
+        <TextView
+            android:id="@+id/txt_derived_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#4FC3F7"
+            android:textSize="11sp"
+            android:layout_marginTop="2dp"
+            android:text="" />
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="Destination wallet address" android:textColor="#CCCCCC" android:textSize="12sp" android:layout_marginTop="10dp" />
+        <EditText
+            android:id="@+id/edit_dest_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:layout_marginEnd="6dp">
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Poll interval (ms)" android:textColor="#CCCCCC" android:textSize="12sp" />
+                <EditText android:id="@+id/edit_poll_ms" android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:inputType="number" android:text="400" android:textColor="#FFFFFF" />
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Fee reserve (lamports)" android:textColor="#CCCCCC" android:textSize="12sp" />
+                <EditText android:id="@+id/edit_fee_reserve" android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:inputType="number" android:text="5000" android:textColor="#FFFFFF" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="Proxy (optional - routes all RPC calls through it)" android:textColor="#CCCCCC" android:textSize="12sp" android:layout_marginTop="10dp" />
+        <Spinner
+            android:id="@+id/spinner_proxy_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="6dp">
+            <EditText android:id="@+id/edit_proxy_host" android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="2" android:hint="proxy host" android:textColor="#FFFFFF" android:textColorHint="#555555" android:layout_marginEnd="6dp" />
+            <EditText android:id="@+id/edit_proxy_port" android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1" android:hint="port" android:inputType="number" android:textColor="#FFFFFF" android:textColorHint="#555555" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="6dp">
+            <EditText android:id="@+id/edit_proxy_user" android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1" android:hint="username (optional)" android:textColor="#FFFFFF" android:textColorHint="#555555" android:layout_marginEnd="6dp" />
+            <EditText android:id="@+id/edit_proxy_pass" android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1" android:hint="password (optional)" android:inputType="textPassword" android:textColor="#FFFFFF" android:textColorHint="#555555" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Save config"
+            android:layout_marginTop="14dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp">
+
+            <Button android:id="@+id/btn_start" android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1" android:text="Start" android:layout_marginEnd="6dp" />
+            <Button android:id="@+id/btn_stop" android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1" android:text="Stop" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txt_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textColor="#AAAAAA"
+            android:textSize="12sp" />
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="Log" android:textColor="#CCCCCC" android:textSize="12sp" android:layout_marginTop="12dp" />
+        <TextView
+            android:id="@+id/txt_log"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="200dp"
+            android:background="#000000"
+            android:textColor="#00FF66"
+            android:fontFamily="monospace"
+            android:textSize="9sp"
+            android:padding="8dp"
+            android:layout_marginTop="4dp" />
+
+    </LinearLayout>
+</ScrollView>
